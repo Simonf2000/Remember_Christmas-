@@ -71,25 +71,18 @@
         }
 
         .btn {
-
-            background-color: #161616;
-
-            border-radius: 10px;
-
-            color: #c5a880;
-
-            border: 1px solid #c5a880;
-
-            padding: 16px;
-
-            width: 300px;
-
-            margin-bottom: 16px;
-
-            line-height: 1.5;
-
-            cursor: pointer;
-
+            padding: 15px 30px; /* 设置按钮的内边距 */
+            font-size: 18px; /* 设置字体大小 */
+            color: #fff; /* 设置文字颜色 */
+            background-color: #ff6347; /* 设置按钮背景色 */
+            border: none; /* 移除边框 */
+            border-radius: 5px; /* 添加圆角 */
+            cursor: pointer; /* 鼠标悬停时显示手型图标 */
+            transition: background-color 0.3s ease; /* 添加背景色过渡效果 */
+        }
+ 
+        .btn:hover {
+            background-color: #ff4500; /* 鼠标悬停时改变背景色 */
         }
 
         .separator {
@@ -124,6 +117,42 @@
 
         }
 
+        #overlay {
+            position: relative; /* 或 fixed，取决于你是否希望它随滚动条移动 */
+            width: 100%; /* 或设置特定的宽度，如 80% */
+            height: 100%; /* 或设置特定的高度，但这里我们让它随内容变化 */
+            background-image: url('GettyImages-686920009.webp'); /* 使用相对路径引用图片 */
+            background-size: cover; /* 使图片覆盖整个div，但注意这里的高度设置 */
+            background-position: center; /* 使图片居中 */
+            display: flex; /* 使用flex布局来居中内部元素 */
+            flex-direction: column; /* 垂直方向排列子元素 */
+            justify-content: center; /* 垂直居中 */
+            align-items: center; /* 水平居中（对于子元素） */
+            padding: 20px; /* 可选：为内部元素提供一些内边距 */
+            box-sizing: border-box; /* 确保内边距和边框不会增加元素的总宽度 */
+            border-radius: 10px; /* 可选：为div添加圆角 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 可选：为div添加阴影以增加立体感 */
+            overflow: hidden; /* 确保内容不会溢出div */
+        }
+
+                /* 内部CSS样式 */
+                h1 {
+            color: #ff6347; /* 设置标题的文本颜色为番茄红 */
+            font-size: 2.5em; /* 设置字体大小为2.5倍于默认大小 */
+            text-align: center; /* 将文本居中显示 */
+            margin: 20px 0; /* 设置标题的上下外边距 */
+            text-shadow: 2px 2px 4px rgb(244, 244, 244); /* 添加文本阴影，增加立体感 */
+        }
+ 
+        /* 您可以为不同的h1元素设置不同的样式，如果需要的话 */
+        h1:nth-of-type(1) {
+            color: #aff1e4; /* 将第一个h1元素的颜色设置为浅绿色 */
+        }
+ 
+        h1:nth-of-type(2) {
+            color: #aff1e4; /* 将第二个h1元素的颜色设置为靛蓝色 */
+        }
+
     </style>
 
 </head>
@@ -145,46 +174,22 @@
 <script src="https://cdn.jsdelivr.net/npm/three@0.115.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
 
 <div id="overlay">
+<h1>Merry Christmas!!</h1>
+<h1>2022 Glasgow</h1>
 
     <ul>
 
-        <li class="title">Select Music</li>
+       
 
         <li>
-
-            <button class="btn" id="btnA" type="button">
-
-                Snowflakes Falling Down by Simon Panrucker
-
-            </button>
-
-        </li>
-
-        <li>
-            <button class="btn" id="btnB" type="button">This Christmas by Dott</button>
-        </li>
-
-        <li>
-            <button class="btn" id="btnC" type="button">No room at the inn by TRG Banks</button>
-        </li>
-
-        <li>
-            <button class="btn" id="btnD" type="button">Jingle Bell Swing by Mark Smeby</button>
-        </li>
-
-        <li class="separator">OR</li>
-
-        <li>
-
-            <input type="file" id="upload" hidden/>
-
-            <label for="upload">Upload File</label>
-
+            <button class="btn" id="btnD" type="button">点击</button>
         </li>
 
     </ul>
 
 </div>
+
+<script src="GettyImages-686920009.webp"></script>
 
 </body>
 
@@ -249,8 +254,6 @@
     const listener = new THREE.AudioListener();
 
     const audio = new THREE.Audio(listener);
-
-    document.querySelector("input").addEventListener("change", uploadAudio, false);
 
     const buttons = document.querySelectorAll(".btn");
 
@@ -368,12 +371,6 @@
             '<div class="text-loading">Please Wait...</div>';
 
         const files = [
-
-            "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Simon_Panrucker/Happy_Christmas_You_Guys/Simon_Panrucker_-_01_-_Snowflakes_Falling_Down.mp3",
-
-            "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Dott/This_Christmas/Dott_-_01_-_This_Christmas.mp3",
-
-            "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/TRG_Banks/TRG_Banks_Christmas_Album/TRG_Banks_-_12_-_No_room_at_the_inn.mp3",
 
             "https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Mark_Smeby/En_attendant_Nol/Mark_Smeby_-_07_-_Jingle_Bell_Swing.mp3",
 
